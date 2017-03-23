@@ -34,8 +34,6 @@ public class GUI extends JFrame implements ActionListener{
 	private String loadDirectory = null;
 	private String saveDirectory = "C:/";
 	
-	private static int repeatedDoc = 1;
-	
 	public GUI(){
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
@@ -69,17 +67,8 @@ public class GUI extends JFrame implements ActionListener{
 				if(fileRes == JFileChooser.APPROVE_OPTION){
 					File selectedFile = fc.getSelectedFile();
 					saveDirectory = selectedFile.getAbsolutePath();
-					//File checkFile = new File(saveDirectory);
 					saveDirectory = saveDirectory.replaceAll(".xml", "");
 					saveDirectory = saveDirectory + ".xml";
-					
-					//if(checkFile.exists() == true){
-					//	saveDirectory = saveDirectory + "(" + repeatedDoc + ")";
-					//	repeatedDoc++;
-					//}
-					
-					//saveDirectory = saveDirectory.replaceAll(".xml", "");
-					//saveDirectory = saveDirectory + ".xml";
 					
 					Main.writeSpreadsheet.write();
 					Main.writeSpreadsheet.output(saveDirectory);
@@ -100,8 +89,6 @@ public class GUI extends JFrame implements ActionListener{
 				if(fileRes == JFileChooser.APPROVE_OPTION){
 					File selectedFile = fc.getSelectedFile();
 					loadDirectory = selectedFile.getAbsolutePath();
-					loadDirectory = saveDirectory.replaceAll(".xml", "");
-					loadDirectory = saveDirectory + ".xml";
 					
 					if(loadDirectory != null){
 						Main.readSpreadsheet.read(loadDirectory);
